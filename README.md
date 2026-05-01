@@ -36,6 +36,7 @@ whether the declared memory behavior is auditable:
 
 Use it as a local CLI, a CI check, a library module, or an adapter layer inside a
 larger evaluation system.
+The Python package is the reference verifier, not a framework requirement. Any agent runtime in any language can use MemoryFlow by emitting the documented JSONL event stream.
 
 ## Who Should Use This
 
