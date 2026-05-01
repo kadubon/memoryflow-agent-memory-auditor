@@ -37,6 +37,15 @@ whether the declared memory behavior is auditable:
 Use it as a local CLI, a CI check, a library module, or an adapter layer inside a
 larger evaluation system.
 
+## Who Should Use This
+
+Use MemoryFlow if you build or evaluate LLM agents with mutable memory and need
+to know whether memory writes, reads, uses, deletions, replacements,
+verification failures, and corrections are auditable from declared telemetry.
+
+Do not use MemoryFlow as a memory store, retrieval engine, embedding system, or
+truth oracle.
+
 ## How This Differs From Agent Memory Systems
 
 MemoryFlow does not store, retrieve, summarize, or rank memories. Systems such
