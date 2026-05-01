@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the MemoryFlow paper."
+title: "MemoryFlow Agent Memory Auditor"
+version: "0.1.0"
+license: "Apache-2.0"
+authors:
+  - name: "K. Takahashi"
+    orcid: "0009-0004-4273-3365"
+preferred-citation:
+  type: article
+  title: "MemoryFlow: Real-Time, Implementation-Agnostic Telemetry for Measuring Dynamic Memory Quality in LLM Agents"
+  authors:
+    - family-names: "Takahashi"
+      given-names: "K."
+  year: 2026
+  doi: "10.5281/zenodo.18136347"
