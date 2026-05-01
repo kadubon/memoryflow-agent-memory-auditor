@@ -21,7 +21,7 @@ keywords = [
   "observability",
 ]
 classifiers = [
-  "Development Status :: 5 - Production/Stable",
+  "Development Status :: 4 - Beta",
   "Intended Audience :: Developers",
   "Intended Audience :: Science/Research",
   "License :: OSI Approved :: Apache Software License",
@@ -53,9 +53,9 @@ dev = [
 memoryflow = "memoryflow.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/memoryflow/memoryflow-agent-memory-auditor"
-Issues = "https://github.com/memoryflow/memoryflow-agent-memory-auditor/issues"
-Source = "https://github.com/memoryflow/memoryflow-agent-memory-auditor"
+Homepage = "https://github.com/kadubon/memoryflow-agent-memory-auditor"
+Issues = "https://github.com/kadubon/memoryflow-agent-memory-auditor/issues"
+Source = "https://github.com/kadubon/memoryflow-agent-memory-auditor"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/memoryflow"]

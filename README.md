@@ -1,5 +1,9 @@
 # MemoryFlow Agent Memory Auditor
 
+[![CI](https://github.com/kadubon/memoryflow-agent-memory-auditor/actions/workflows/ci.yml/badge.svg)](https://github.com/kadubon/memoryflow-agent-memory-auditor/actions/workflows/ci.yml)
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/python-3.11%2B-blue.svg)](pyproject.toml)
+
 MemoryFlow audits the dynamic memory of LLM agents from declared event streams.
 It answers operational questions such as:
 
@@ -13,6 +17,10 @@ MemoryFlow is not a memory algorithm, vector database, embedding model, retrieva
 strategy, prompt template, or tracing dashboard. It is a telemetry verifier: it
 measures what your agent declares through deterministic memory events, and it
 does not claim to know hidden truth inside your memory store.
+
+Research basis: Takahashi, K. (2026). MemoryFlow: Real-Time,
+Implementation-Agnostic Telemetry for Measuring Dynamic Memory Quality in LLM
+Agents. Zenodo. https://doi.org/10.5281/zenodo.18136347
 
 ## Why This Exists
 
@@ -29,6 +37,15 @@ whether the declared memory behavior is auditable:
 Use it as a local CLI, a CI check, a library module, or an adapter layer inside a
 larger evaluation system.
 
+## How This Differs From Agent Memory Systems
+
+MemoryFlow does not store, retrieve, summarize, or rank memories. Systems such
+as vector-memory stores, graph-memory systems, or long-term agent memory
+frameworks decide what should be remembered. MemoryFlow asks a different
+question: whether the memory behavior declared by such systems is auditable,
+version-bound, stale-aware, correction-aware, and comparable under a declared
+conformance profile.
+
 ## Install
 
 For end users after package publication:
@@ -42,7 +59,7 @@ pipx install memoryflow-agent-memory-auditor
 For installation directly from GitHub before a package release:
 
 ```bash
-pip install "memoryflow-agent-memory-auditor @ git+https://github.com/memoryflow/memoryflow-agent-memory-auditor.git"
+pip install "memoryflow-agent-memory-auditor @ git+https://github.com/kadubon/memoryflow-agent-memory-auditor.git"
 ```
 
 For contributors, this project uses `uv`.
