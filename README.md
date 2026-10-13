@@ -58,39 +58,34 @@ conformance profile.
 
 ## Install
 
-For end users after package publication:
+Source and GitHub release version: 0.1.0, Python 3.11+. No public PyPI
+distribution was found when checked on September 25, 2026. Install the identified
+GitHub tag in an isolated environment (requires Git and network access):
 
 ```bash
-pip install memoryflow-agent-memory-auditor
-pip install "memoryflow-agent-memory-auditor[server]"
-pipx install memoryflow-agent-memory-auditor
+python -m pip install "memoryflow-agent-memory-auditor @ git+https://github.com/kadubon/memoryflow-agent-memory-auditor.git@v0.1.0"
+memoryflow --version
 ```
 
-For installation directly from GitHub before a package release:
-
-```bash
-pip install "memoryflow-agent-memory-auditor @ git+https://github.com/kadubon/memoryflow-agent-memory-auditor.git"
-```
-
-For contributors, this project uses `uv`.
+For contributors with a source checkout, run from the repository root:
 
 ```bash
 uv sync --all-extras
 uv run memoryflow --version
 ```
 
-For optional local HTTP endpoints:
-
-```bash
-uv sync --extra server
-```
+`uv sync` installs dependencies and can access the network. The optional HTTP
+server dependencies are selected by `uv sync --extra server` in that checkout.
 
 The core package has no runtime dependencies and performs no outbound network
 calls.
 
 ## Five-Minute Audit
 
-Create a sample trace, validate it, and audit it:
+In a prepared source checkout, use fresh output paths. `sample --out` writes
+`events.jsonl`; validation and the JSON audit print reports; the last command
+writes `report.html`. For a directly installed package, omit `uv run` from these
+commands. Without a prepared environment, `uv run` can install dependencies:
 
 ```bash
 uv run memoryflow sample --case stale-memory --out events.jsonl
@@ -99,7 +94,8 @@ uv run memoryflow audit events.jsonl --profile P1 --format json
 uv run memoryflow audit events.jsonl --profile P1 --out report.html
 ```
 
-Initialize a project-local config and examples:
+Optional local writes: `init` creates `.memoryflow/config.json` and example
+files. Run it in a fresh directory:
 
 ```bash
 uv run memoryflow init
@@ -114,13 +110,13 @@ Read a compact score:
 uv run memoryflow score events.jsonl --profile P1 --format json
 ```
 
-Compare two traces:
+Compare two existing traces (supply your own `before.jsonl` and `after.jsonl`):
 
 ```bash
 uv run memoryflow diff before.jsonl after.jsonl --profile P1
 ```
 
-Explain a JSON report:
+Explain an existing JSON report (create it with `audit --format json --out report.json` first):
 
 ```bash
 uv run memoryflow explain-report report.json
@@ -154,7 +150,8 @@ Every event uses this envelope:
 }
 ```
 
-Example write:
+Illustrative write record: `sha256:abc123` is a shortened placeholder, not an
+actual SHA-256 checksum. Emit the actual content digest in real telemetry:
 
 ```json
 {
@@ -229,7 +226,8 @@ print(data["status"])
 print({metric["name"]: metric["status"] for metric in data["metrics"]})
 ```
 
-Emit events locally:
+Emit events locally (illustrative digest as above). `write_jsonl` writes
+`events.jsonl`; use a fresh destination:
 
 ```python
 from memoryflow.adapters import MemoryFlowEmitter, write_jsonl
@@ -286,6 +284,11 @@ MemoryFlow verifies declared telemetry only. It cannot prove:
 
 This boundary is intentional. MemoryFlow makes unsupported claims explicit
 instead of filling gaps with inference.
+
+Auditing `MEM_DELETE` and `MEM_USE` declarations neither deletes stored memory
+nor establishes hidden causal influence. For neighboring tools, see the
+[Collective Intelligence Research and OSS Index](https://kadubon.github.io/github.io/collective-intelligence-index.html) and its
+[memory governance](https://kadubon.github.io/github.io/collective-intelligence-index.html#problem-memory-governance) route.
 
 ## Documentation
 
